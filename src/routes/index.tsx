@@ -717,7 +717,17 @@ function Footer() {
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 px-6 pt-6 text-xs text-white/60 sm:flex sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} EnergyFlow. Todos os direitos reservados.</p>
-        <p className="mt-2 sm:mt-0">Desenvolvido por Wave Labs Performance</p>
+       <p className="mt-2 sm:mt-0">
+  Desenvolvido por{" "}
+  <a
+    href="https://www.instagram.com/wavelabsperformance/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-medium text-white transition hover:text-white/80 underline underline-offset-4"
+  >
+    Wave Labs Performance
+  </a>
+</p>
       </div>
     </footer>
   );
