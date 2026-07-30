@@ -1,13 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  Check, Star, ArrowRight, ShieldCheck, Play, Sparkles, Infinity as InfinityIcon,
-  Clock, Lock, ChevronUp, Instagram, Mail, MessageCircle, Plus,
+  Check,
+  Star,
+  ArrowRight,
+  ShieldCheck,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Sparkles,
+  Infinity as InfinityIcon,
+  Clock,
+  Lock,
+  ChevronUp,
+  Instagram,
+  Mail,
+  MessageCircle,
+  Plus,
 } from "lucide-react";
 import { site, tickerPhrases } from "@/lib/site";
 import { modules } from "@/data/modules";
 import { testimonials } from "@/data/testimonials";
 import { faq } from "@/data/faq";
+
 
 /* ---------------- tracking ---------------- */
 type WinWithDL = Window & { dataLayer?: Array<Record<string, unknown>> };
@@ -148,7 +165,7 @@ function LandingPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Hero />
-      <Ticker />
+      <Kicker children={undefined} />
       <ParaQuem />
       <Transformar />
       <Mentora />
@@ -170,22 +187,49 @@ function LandingPage() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
   const [videoStarted, setVideoStarted] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(false);
 
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    const onPlay = () => { if (!videoStarted) { setVideoStarted(true); track("video_start"); } };
+
+    const onPlay = () => {
+      if (!videoStarted) {
+        setVideoStarted(true);
+        track("video_start");
+      }
+    };
+
     const onEnd = () => track("video_complete");
+
     v.addEventListener("play", onPlay);
     v.addEventListener("ended", onEnd);
-    return () => { v.removeEventListener("play", onPlay); v.removeEventListener("ended", onEnd); };
+
+    return () => {
+      v.removeEventListener("play", onPlay);
+      v.removeEventListener("ended", onEnd);
+    };
   }, [videoStarted]);
+
+  const enableSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    v.muted = false;
+    v.volume = 1;
+    v.play();
+
+    setSoundEnabled(true);
+  };
 
   return (
     <section className="relative overflow-hidden">
-      {/* soft ambient gradients */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
         <div className="absolute -top-40 left-1/2 h-[720px] w-[720px] -translate-x-1/2 rounded-full bg-[color:var(--rose)] opacity-40 blur-3xl" />
         <div className="absolute right-[-10%] top-[35%] h-[420px] w-[420px] rounded-full bg-[color:var(--offpink)] opacity-70 blur-3xl" />
       </div>
@@ -193,35 +237,51 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-16 pt-10 sm:pt-14 md:pb-24 md:pt-20">
         <div className="reveal flex items-center justify-center gap-3">
           <span className="h-px w-8 bg-[color:var(--burgundy)]/40" />
-          <span className="kicker">{site.product} • {site.edition}</span>
+          <span className="kicker">
+            {site.product} • {site.edition}
+          </span>
           <span className="h-px w-8 bg-[color:var(--burgundy)]/40" />
         </div>
 
-        {/* Vídeo — mobile first (aparece logo abaixo do título em mobile via ordem) */}
         <div className="reveal mx-auto w-full max-w-4xl">
           <div className="group relative overflow-hidden rounded-3xl shadow-[0_40px_120px_-40px_rgba(107,15,36,0.45)] ring-1 ring-black/5">
+
             <video
               ref={videoRef}
               className="aspect-video w-full object-cover"
               src={site.heroVideo}
-              poster={typeof site.heroPoster === "string" ? site.heroPoster : (site.heroPoster as unknown as { src: string }).src}
+            
+              
               autoPlay
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/25 via-transparent to-transparent" />
+
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/20 via-transparent to-transparent" />
+
+            {!soundEnabled && (
+              <button
+                onClick={enableSound}
+                className="absolute inset-0 flex items-center justify-center bg-black/20 transition hover:bg-black/30"
+              >
+                
+              </button>
+            )}
           </div>
         </div>
 
         <div className="reveal mx-auto max-w-4xl text-center">
           <h1 className="font-display text-4xl leading-[1.05] text-balance text-[color:var(--burgundy)] sm:text-6xl md:text-7xl">
-            Uma jornada de <em className="not-italic font-medium italic">reconexão</em>,
-            <br className="hidden sm:block" /> consciência e potência interior.
+            Uma jornada de <em className="italic not-italic font-medium">reconexão</em>,
+            <br className="hidden sm:block" />
+            consciência e potência interior.
           </h1>
+
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
-            Não são apenas aulas. É uma jornada de retorno para si mesma — 100% online, com acesso imediato e vitalício.
+            Não são apenas aulas. É uma jornada de retorno para si mesma — 100%
+            online, com acesso imediato e vitalício.
           </p>
 
           <ul className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-foreground/80">
@@ -232,33 +292,24 @@ function Hero() {
               { icon: <ShieldCheck className="h-4 w-4" />, t: "Garantia de 7 dias" },
             ].map((b) => (
               <li key={b.t} className="inline-flex items-center gap-2">
-                <span className="text-[color:var(--burgundy)]">{b.icon}</span>{b.t}
+                <span className="text-[color:var(--burgundy)]">
+                  {b.icon}
+                </span>
+                {b.t}
               </li>
             ))}
           </ul>
 
           <div className="mt-9 flex flex-col items-center gap-3">
-            <CTA source="cta_hero">Quero começar minha Jornada</CTA>
-            <span className="text-xs text-muted-foreground">Pagamento único de {site.price} • Sem mensalidade</span>
+            <CTA source="cta_hero">
+              Quero começar minha Jornada
+            </CTA>
+
+            <span className="text-xs text-muted-foreground">
+              Pagamento único de {site.price} • Sem mensalidade
+            </span>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- TICKER ---------------- */
-function Ticker() {
-  const items = [...tickerPhrases, ...tickerPhrases];
-  return (
-    <section aria-label="Manifesto" className="relative overflow-hidden border-y border-[color:var(--burgundy)]/10 bg-[color:var(--burgundy)] py-5 text-white">
-      <div className="flex w-max animate-ticker whitespace-nowrap">
-        {items.map((p, i) => (
-          <span key={i} className="mx-8 inline-flex items-center gap-8 font-display text-lg italic tracking-wide text-white/85">
-            {p}
-            <span className="h-1 w-1 rounded-full bg-white/50" />
-          </span>
-        ))}
       </div>
     </section>
   );

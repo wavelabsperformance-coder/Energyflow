@@ -21,7 +21,7 @@ export const site = {
   email: "contato@energyflow.com.br",
   siteName: "EnergyFlow — Jornada",
   // Vídeo principal do hero. Substitua pela URL final.
-  heroVideo: "https://cdn.coverr.co/videos/coverr-a-woman-meditating-in-a-park-3096/1080p.mp4",
+  heroVideo: "https://pub-a0daf9a95ce44c6b8872e453e8df99cf.r2.dev/Boas%20vindas%20-%20Energyflow%20(1).mp4",
   heroPoster: heroImg,
   images: {
     hero: heroImg,
