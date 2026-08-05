@@ -276,12 +276,12 @@ function Hero() {
                 preload="auto"
               />
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/30 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/20 via-transparent to-transparent" />
 
               {!soundEnabled && (
                 <button
                   onClick={enableSound}
-                  className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px] transition hover:bg-black/30"
+                  className="absolute inset-0 flex items-center justify-center bg-black/5 transition hover:bg-black/20"
                 >
                   <span className="inline-flex items-center gap-2 rounded-full bg-white/95 px-6 py-3 text-xs font-bold uppercase tracking-wider text-[color:var(--burgundy)] shadow-xl transition transform group-hover:scale-105">
                     <VolumeX className="h-4 w-4 text-[color:var(--burgundy)]" /> Ativar Som
