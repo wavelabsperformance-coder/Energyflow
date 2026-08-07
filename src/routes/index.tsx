@@ -463,49 +463,206 @@ function Transformar() {
   );
 }
 
-/* ---------------- MENTORA ---------------- */
+/* ---------------- MENTORA (Visual Reeditado) ---------------- */
 function Mentora() {
+  const especialidades = [
+    { title: "Mindfulness", desc: "Atenção plena e presença" },
+    { title: "Medicina Chinesa", desc: "Equilíbrio energético" },
+    { title: "Terapias Integrativas", desc: "Cuidado holístico" },
+    { title: "Consciência Corporal", desc: "Reconexão com o corpo" },
+    { title: "Feminino Cíclico", desc: "Sabedoria das fases" },
+  ];
+
   return (
-    <section className="bg-[color:var(--offpink)]/30 py-24 md:py-32 border-y border-black/5">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[color:var(--offpink)]/60 via-white to-[color:var(--offpink)]/30 py-20 md:py-32 border-y border-[color:var(--burgundy)]/15">
+      {/* Luz ambiente de fundo */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -left-20 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[color:var(--rose)]/35 blur-[120px]" />
+      </div>
+
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid items-center gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
+        
+        {/* ================= LAYOUT MOBILE (< md) ================= */}
+        <div className="flex flex-col gap-8 md:hidden">
+          
+          {/* 1. TÍTULO NOVO & MARCANTE */}
           <div className="reveal">
-            <div className="relative p-3 rounded-3xl bg-white border border-[color:var(--burgundy)]/10 shadow-2xl">
-              <img
-                src={site.images.mentora}
-                alt="Jamilly Pacheco, mentora da Jornada EnergyFlow"
-                width={1200}
-                height={1500}
-                loading="lazy"
-                className="aspect-[4/5] w-full rounded-2xl object-cover"
-              />
+            <div className="inline-flex items-center gap-2 rounded-full bg-[color:var(--burgundy)]/10 px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-[color:var(--burgundy)] border border-[color:var(--burgundy)]/15 mb-3">
+              <Sparkles className="h-3 w-3 text-[color:var(--burgundy)]" />
+              <span>Sua Mentora & Condução</span>
             </div>
-          </div>
-          <div className="reveal">
-            <Kicker>Sua mentora</Kicker>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-[color:var(--burgundy)] sm:text-5xl">
+
+            <h2 className="font-display text-4xl font-normal leading-[1.05] text-[color:var(--burgundy)] tracking-tight">
               Jamilly Pacheco
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-foreground/85 font-normal">
+            
+            <div className="mt-3 flex items-center gap-3">
+              <span className="h-px w-8 bg-[color:var(--burgundy)]/40" />
+              <p className="text-xs font-semibold uppercase tracking-wider text-[color:var(--burgundy)]/80">
+                Especialista Integrativa
+              </p>
+            </div>
+          </div>
+
+          {/* 2. IMAGEM COM MOLDURA EDITORIAL */}
+          <div className="reveal">
+            <div className="relative mx-auto max-w-md">
+              <div className="relative p-2.5 rounded-[28px] bg-white border border-[color:var(--burgundy)]/15 shadow-[0_25px_60px_-15px_rgba(107,15,36,0.18)]">
+                <div className="relative overflow-hidden rounded-2xl">
+                  <img
+                    src={site.images.mentora}
+                    alt="Jamilly Pacheco, mentora da Jornada EnergyFlow"
+                    width={1200}
+                    height={1500}
+                    loading="lazy"
+                    className="aspect-[4/5] w-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/30 via-transparent to-transparent" />
+                </div>
+
+                {/* Badge no canto do card */}
+                <div className="absolute -bottom-3 right-4 rounded-xl border border-[color:var(--burgundy)]/15 bg-white px-3.5 py-2 shadow-lg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[color:var(--rose)] animate-pulse" />
+                  <span className="font-display text-xs font-semibold text-[color:var(--burgundy)]">
+                    EnergyFlow
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. TEXTO E BLOQUINHOS REESTILIZADOS */}
+          <div className="reveal">
+            <p className="text-base leading-relaxed text-foreground/85 font-normal">
               Especialista em consciência corporal, desenvolvimento feminino, mindfulness, Medicina Chinesa,
               massoterapia, terapias integrativas e energia — Jamilly criou a Jornada EnergyFlow para conduzir
               mulheres de volta ao próprio centro.
             </p>
-            <ul className="mt-8 flex flex-wrap gap-2.5">
-              {["Mindfulness","Medicina Chinesa","Terapias Integrativas","Consciência Corporal","Feminino Cíclico"].map((t) => (
-                <li key={t} className="rounded-full border border-[color:var(--burgundy)]/15 bg-white px-4 py-2 text-xs font-semibold text-[color:var(--burgundy)] shadow-sm">
-                  {t}
-                </li>
-              ))}
-            </ul>
+            
+            {/* BLOQUINHOS NOVO DESIGN */}
+            <div className="mt-8">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[color:var(--burgundy)]/60 mb-3">
+                Pilares de Especialidade
+              </p>
+              
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {especialidades.map((e) => (
+                  <div 
+                    key={e.title}
+                    className="flex items-center gap-3 rounded-2xl border border-[color:var(--burgundy)]/15 bg-white/90 p-3 shadow-sm"
+                  >
+                    <div className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-[color:var(--offpink)] text-[color:var(--burgundy)]">
+                      <Check className="h-4 w-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[color:var(--burgundy)]">{e.title}</p>
+                      <p className="text-[10px] text-muted-foreground">{e.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
         </div>
+
+        {/* ================= LAYOUT DESKTOP (>= md) ================= */}
+        <div className="hidden md:grid md:grid-cols-[1fr_1.2fr] md:gap-16 lg:gap-20 items-center">
+          
+          {/* FOTO DESKTOP */}
+          <div className="reveal">
+            <div className="relative">
+              <div aria-hidden className="absolute -inset-2 rounded-[36px] bg-gradient-to-tr from-[color:var(--burgundy)]/20 via-[color:var(--rose)]/30 to-transparent blur-lg" />
+              
+              <div className="relative p-3.5 rounded-[32px] bg-white border border-[color:var(--burgundy)]/15 shadow-[0_32px_80px_-16px_rgba(107,15,36,0.18)]">
+                <div className="relative overflow-hidden rounded-[22px]">
+                  <img
+                    src={site.images.mentora}
+                    alt="Jamilly Pacheco, mentora da Jornada EnergyFlow"
+                    width={1200}
+                    height={1500}
+                    loading="lazy"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--burgundy)]/20 via-transparent to-transparent" />
+                </div>
+
+                <div className="absolute -bottom-5 right-8 rounded-2xl border border-[color:var(--burgundy)]/15 bg-white px-5 py-3 shadow-2xl backdrop-blur-md flex items-center gap-3">
+                  <div className="grid h-8 w-8 place-items-center rounded-xl bg-[color:var(--offpink)] text-[color:var(--burgundy)]">
+                    <Sparkles className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="font-display text-xs font-bold text-[color:var(--burgundy)]">
+                      Método Exclusivo
+                    </p>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">
+                      Jornada EnergyFlow
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* TEXTO DESKTOP */}
+          <div className="reveal">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[color:var(--burgundy)]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[color:var(--burgundy)] border border-[color:var(--burgundy)]/15 mb-4">
+              <Sparkles className="h-3.5 w-3.5 text-[color:var(--burgundy)]" />
+              <span>Sua Mentora & Condução</span>
+            </div>
+
+            <h2 className="font-display text-5xl lg:text-6xl font-normal leading-[1.05] text-[color:var(--burgundy)] tracking-tight">
+              Jamilly Pacheco
+            </h2>
+            
+            <div className="mt-3 flex items-center gap-3 mb-6">
+              <span className="h-px w-12 bg-[color:var(--burgundy)]/30" />
+              <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--burgundy)]/75">
+                Especialista Integrativa & Consciência Corporal
+              </p>
+            </div>
+
+            <p className="text-lg leading-relaxed text-foreground/85 font-normal">
+              Especialista em consciência corporal, desenvolvimento feminino, mindfulness, Medicina Chinesa,
+              massoterapia, terapias integrativas e energia — Jamilly criou a Jornada EnergyFlow para conduzir
+              mulheres de volta ao próprio centro.
+            </p>
+
+            {/* BLOQUINHOS DESKTOP */}
+            <div className="mt-8 pt-6 border-t border-[color:var(--burgundy)]/15">
+              <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--burgundy)]/70 mb-4">
+                Pilares da Mentoria
+              </p>
+              
+              <div className="grid gap-3 sm:grid-cols-2">
+                {especialidades.map((e) => (
+                  <div 
+                    key={e.title}
+                    className="flex items-center gap-3 rounded-2xl border border-[color:var(--burgundy)]/15 bg-white p-3.5 shadow-sm transition-all duration-300 hover:border-[color:var(--burgundy)]/30 hover:shadow-md hover:-translate-y-0.5"
+                  >
+                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[color:var(--offpink)] text-[color:var(--burgundy)]">
+                      <Check className="h-4 w-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[color:var(--burgundy)]">{e.title}</p>
+                      <p className="text-[11px] text-muted-foreground">{e.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
 }
 
 /* ---------------- MÓDULOS ---------------- */
+/* ---------------- MÓDULOS (Refatorado) ---------------- */
 function Modulos() {
   return (
     <section id="modulos" className="bg-[color:var(--burgundy)] py-24 md:py-32 text-white shadow-2xl">
@@ -520,16 +677,16 @@ function Modulos() {
           {modules.map((m, i) => {
             const flip = i % 2 === 1;
             return (
-              <article key={m.number} className="reveal rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-md grid items-center gap-10 md:grid-cols-2 md:gap-16">
+              <article key={m.number} className="reveal rounded-3xl border border-white/10 bg-white/5 p-6 md:p-12 backdrop-blur-md grid items-center gap-10 md:grid-cols-2 md:gap-16">
                 <div className={flip ? "md:order-2" : ""}>
-                  <div className="p-2 rounded-2xl bg-white/10 border border-white/10 shadow-2xl">
+                  <div className="p-2 rounded-2xl bg-white/10 border border-white/10 shadow-2xl w-full">
                     <img
                       src={m.image}
                       alt={m.title}
                       width={1200}
                       height={1500}
                       loading="lazy"
-                      className="aspect-[4/3] md:aspect-[4/5] w-full rounded-xl object-cover"
+                      className="w-full h-auto max-h-[500px] aspect-[4/5] rounded-xl object-contain md:object-cover"
                     />
                   </div>
                 </div>
@@ -793,25 +950,29 @@ function Investimento() {
         </div>
 
         <div className="reveal mt-12 overflow-hidden rounded-[36px] border border-[color:var(--burgundy)]/20 bg-white shadow-[0_40px_120px_-30px_rgba(107,15,36,0.3)]">
-          <div className="bg-[color:var(--burgundy)] px-8 py-10 text-center text-white relative overflow-hidden">
+          <div className="bg-[color:var(--burgundy)] px-6 sm:px-8 py-10 text-center text-white relative overflow-hidden">
             <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             <span className="inline-block rounded-full bg-white/15 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[color:var(--rose)] border border-white/20 mb-3">
               Oferta Especial
             </span>
-            <p className="font-display text-4xl font-normal">Jornada EnergyFlow</p>
-            <p className="mt-2 text-xs uppercase tracking-widest text-white/80">Curso 100% Online • Acesso Vitalício • Suporte em Comunidade</p>
+            <p className="font-display text-3xl sm:text-4xl font-normal">Jornada EnergyFlow</p>
+            <p className="mt-2 text-[10px] sm:text-xs uppercase tracking-widest text-white/80">
+              Curso 100% Online • Acesso Vitalício • Suporte em Comunidade
+            </p>
           </div>
 
-          <div className="px-8 py-12 sm:px-14 text-center">
+          <div className="px-5 py-10 sm:px-14 text-center">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Pagamento único de apenas</span>
             <div className="mt-2 flex items-center justify-center gap-1">
               <p className="font-display text-6xl font-normal text-[color:var(--burgundy)] sm:text-7xl">{site.price}</p>
             </div>
-            <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground/80">
-              Sem mensalidades • Sem cobranças recorrentes
+            
+            {/* Texto em uma única linha no mobile */}
+            <p className="mt-2 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground/80 whitespace-nowrap overflow-hidden text-ellipsis">
+              Sem mensalidades <span className="mx-0.5 sm:mx-1 text-[color:var(--rose)]">•</span> Sem cobranças recorrentes
             </p>
 
-            <div className="my-10 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+            <div className="my-8 sm:my-10 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
             <ul className="mx-auto grid max-w-md gap-4 text-left">
               {[
@@ -824,22 +985,24 @@ function Investimento() {
                   <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[color:var(--offpink)] text-[color:var(--burgundy)]">
                     <Check className="h-3.5 w-3.5 stroke-[3]" />
                   </div>
-                  {t}
+                  <span>{t}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-10">
-              <CTA source="cta_middle" full className="text-lg py-5 shadow-2xl">
+              {/* Ajuste no botão para não quebrar texto no mobile */}
+              <CTA source="cta_middle" full className="py-4 sm:py-5 text-sm sm:text-lg whitespace-nowrap px-4 sm:px-8">
                 Garantir Meu Acesso Agora
               </CTA>
-              <div className="mt-4 flex items-center justify-center gap-4 text-xs font-medium text-muted-foreground">
+              
+              <div className="mt-4 flex items-center justify-center gap-2 sm:gap-4 text-[11px] sm:text-xs font-medium text-muted-foreground whitespace-nowrap">
                 <span className="inline-flex items-center gap-1.5">
-                  <Lock className="h-3.5 w-3.5 text-[color:var(--burgundy)]" /> Ambiente 100% seguro
+                  <Lock className="h-3.5 w-3.5 text-[color:var(--burgundy)] shrink-0" /> Ambiente 100% seguro
                 </span>
                 <span>•</span>
                 <span className="inline-flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-[color:var(--burgundy)]" /> Hotmart
+                  <ShieldCheck className="h-3.5 w-3.5 text-[color:var(--burgundy)] shrink-0" /> Hotmart
                 </span>
               </div>
             </div>
@@ -850,12 +1013,12 @@ function Investimento() {
   );
 }
 
-/* ---------------- ÚLTIMA CHAMADA ---------------- */
+/* ---------------- ÚLTIMA CHAMADA (Refatorado) ---------------- */
 function UltimaChamada() {
   return (
     <section className="relative overflow-hidden bg-[color:var(--burgundy)] py-28 md:py-36 text-white shadow-2xl">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--rose)]/20 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--rose)]/30 blur-[120px]" />
       </div>
 
       <div className="reveal relative z-10 mx-auto max-w-3xl px-6 text-center">
@@ -863,17 +1026,34 @@ function UltimaChamada() {
         <h2 className="mt-6 font-display text-4xl leading-tight text-white sm:text-6xl">
           A decisão de voltar para você está em suas mãos.
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-white/85 font-light leading-relaxed">
+        <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-white/85 font-light leading-relaxed">
           Nada muda até que você decida mudar a sua rotina. Escolha habitar o seu corpo com mais <em className="italic font-normal text-[color:var(--rose)]">presença</em>, leveza e potência.
         </p>
         
-        <div className="mt-10 inline-flex flex-col items-center rounded-2xl border border-white/15 bg-white/5 px-8 py-4 backdrop-blur-md">
-          <p className="font-display text-4xl text-white">{site.price}</p>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[color:var(--rose)] mt-1">Acesso vitalício sem taxas futuras</p>
+        {/* Card em Rosé Editorial / Clean & Sofisticado */}
+        <div className="mt-10 mx-auto max-w-sm rounded-3xl bg-[color:var(--offpink)] p-8 text-[color:var(--burgundy)] border border-[color:var(--rose)]/40 shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[color:var(--rose)]/40 blur-xl" />
+          
+          <span className="relative inline-block rounded-full bg-[color:var(--burgundy)]/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[color:var(--burgundy)] border border-[color:var(--burgundy)]/15 mb-3">
+            Acesso Imediato
+          </span>
+
+          <p className="relative font-display text-6xl font-normal tracking-tight text-[color:var(--burgundy)] my-2">
+            {site.price}
+          </p>
+          
+          <p className="relative text-xs font-bold uppercase tracking-wider text-[color:var(--burgundy)]/75">
+            Pagamento único • Acesso vitalício
+          </p>
+
+          <div className="relative mt-6 pt-4 border-t border-[color:var(--burgundy)]/15 flex items-center justify-center gap-2 text-xs font-semibold text-[color:var(--burgundy)]/85">
+            <ShieldCheck className="h-4 w-4 text-[color:var(--burgundy)]" />
+            <span>Garantia incondicional de 7 dias</span>
+          </div>
         </div>
 
         <div className="mt-10">
-          <CTA source="cta_footer" className="bg-white text-[color:var(--burgundy)] hover:bg-stone-100 hover:shadow-white/20">
+          <CTA source="cta_footer" className="bg-[color:var(--offpink)] text-[color:var(--burgundy)] hover:bg-white hover:shadow-xl font-bold px-10 py-5 text-lg">
             Quero começar minha Jornada
           </CTA>
         </div>
